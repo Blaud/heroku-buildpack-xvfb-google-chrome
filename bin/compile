@@ -138,6 +138,8 @@ BIN_DIR=$BUILD_DIR/.apt/usr/bin
 rm $BIN_DIR/$SHIM
 cat <<EOF >$BIN_DIR/$SHIM
 #!/usr/bin/env bash
+Xvfb :42 </dev/null &> /dev/null &
+export DISPLAY=:42
 exec \$HOME/.apt/opt/google/$BIN --disable-gpu --no-sandbox \$@
 EOF
 chmod +x $BIN_DIR/$SHIM
