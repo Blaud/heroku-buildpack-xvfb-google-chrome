@@ -140,7 +140,7 @@ cat <<EOF >$BIN_DIR/$SHIM
 #!/usr/bin/env bash
 Xvfb :42 </dev/null &> /dev/null &
 export DISPLAY=:42
-exec \$HOME/.apt/opt/google/$BIN --disable-gpu --no-sandbox \$@
+exec xvfb-run --server-args='-screen 0, 1024x768x16' \$HOME/.apt/opt/google/$BIN --disable-gpu --no-sandbox > /dev/null &
 EOF
 chmod +x $BIN_DIR/$SHIM
 cp $BIN_DIR/$SHIM $BIN_DIR/google-chrome
